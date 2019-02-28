@@ -6,8 +6,8 @@ Works on Mesh Filters and Skinned Mesh Renderers.
 ![1](https://i.imgur.com/5wLtUS5.gif)
 
 ## Setup
-1. Add the `PirahnaTarget` component to a game object with a Mesh Filter or Skinned Mesh Renderer. 
-2. Drag any rigidbodies you want to swarm the target into the `Pirahnas` list.
+1. Add the `PiranhaTarget` component to a game object with a Mesh Filter or Skinned Mesh Renderer. 
+2. Drag any rigidbodies you want to swarm the target into the `Piranhas` list.
 3. Hit play!
 
 ## Options
