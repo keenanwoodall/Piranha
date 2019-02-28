@@ -2239,7 +2239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 2
-  pirahnas:
+  rigidbodies:
   - {fileID: 762015752}
   - {fileID: 1231367973}
   - {fileID: 1458435350}

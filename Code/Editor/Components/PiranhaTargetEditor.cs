@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using UnityEditor;
-using Piranha;
 using UnityEditorInternal;
+using Beans.Unity.Editor;
+using Piranha;
 
 namespace PirahnaEditor
 {
@@ -10,7 +11,7 @@ namespace PirahnaEditor
 	{
 		private class Content
 		{
-			public static readonly GUIContent ListHeader = new GUIContent ("Rigidbodies");
+			public static readonly GUIContent Rigidbodies = new GUIContent ("Rigidbodies");
 			public static readonly GUIContent Force = new GUIContent (text: "Force", tooltip: "Magnitude of the force (impulse) to apply to each rigidbody.");
 		}
 
@@ -32,9 +33,6 @@ namespace PirahnaEditor
 		private void OnEnable ()
 		{
 			properties = new Properties (serializedObject);
-
-			list = new ReorderableList (serializedObject, properties.Rigidbodies);
-			list.drawHeaderCallback = (r) => EditorGUI.LabelField (r, Content.ListHeader);
 		}
 
 		public override void OnInspectorGUI ()
@@ -42,7 +40,18 @@ namespace PirahnaEditor
 			serializedObject.UpdateIfRequiredOrScript ();
 
 			EditorGUILayout.PropertyField (properties.Force, Content.Force);
-			list.DoLayoutList ();
+
+			EditorGUILayout.PropertyField (properties.Rigidbodies, Content.Rigidbodies, true);
+
+			var dndRigidbodies = EditorGUILayoutx.DragAndDropArea<Rigidbody> ();
+			if (dndRigidbodies != null)
+			{
+				Undo.RecordObjects (targets, "Added rigidbodies");
+				foreach (var t in targets)
+				{
+					((PiranhaTarget)t).rigidbodies.AddRange (dndRigidbodies);
+				}
+			}
 
 			serializedObject.ApplyModifiedProperties ();
 		}
