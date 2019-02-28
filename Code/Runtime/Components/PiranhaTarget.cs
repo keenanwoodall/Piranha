@@ -1,7 +1,8 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
-namespace Pirahna
+namespace Piranha
 {
 	public class PiranhaTarget : MonoBehaviour
 	{
@@ -82,7 +83,7 @@ namespace Pirahna
 		}
 
 		public float force = 5f;
-		public Rigidbody[] pirahnas;
+		public List<Rigidbody> rigidbodies = new List<Rigidbody> ();
 
 		private MeshTarget target;
 		private Mesh mesh;
@@ -112,32 +113,32 @@ namespace Pirahna
 				vertices = mesh.vertices;
 			}
 
-			for (var i = 0; i < pirahnas.Length; i++)
+			for (var i = 0; i < rigidbodies.Count; i++)
 			{
-				var pirahna = pirahnas[i];
+				var piranha = rigidbodies[i];
 
 				// Don't do anything to the rigidbody if it's game object is disabled.
-				if (!pirahna.gameObject.activeInHierarchy)
+				if (!piranha.gameObject.activeInHierarchy)
 					continue;
 
 				// Get the target position in worlspace. This the position the rigidbody will be trying to reach.
 				var targetPosition = GetVerticeInWorldspace (GetTargetVertexIndex (i));
 				// Calculate the direction to move along.
-				var direction = (targetPosition - pirahna.transform.position).normalized;
+				var direction = (targetPosition - piranha.transform.position).normalized;
 
 				// Add force towards the target position.
-				pirahna.AddForce (direction * force * Time.fixedDeltaTime, ForceMode.Impulse);
+				piranha.AddForce (direction * force * Time.fixedDeltaTime, ForceMode.Impulse);
 			}
 		}
 
 		/// <summary>
-		/// Get a vertex index from a pirahna index.
+		/// Get a vertex index from a rigidbody index.
 		/// </summary>
 		[MethodImpl (MethodImplOptions.AggressiveInlining)]
-		private int GetTargetVertexIndex (int pirahnaIndex)
+		private int GetTargetVertexIndex (int rigidbodyIndex)
 		{
 			// Get how far between the start and end of the array the current index is, in a 0 to 1 range.
-			var normalizedIndex = (float)pirahnaIndex / pirahnas.Length;
+			var normalizedIndex = (float)rigidbodyIndex / rigidbodies.Count;
 			// Remap the normalized index to the length of the vertex array.
 			return (int)(normalizedIndex * vertices.Length);
 		}
