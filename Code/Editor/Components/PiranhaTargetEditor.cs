@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using UnityEditorInternal;
-using Beans.Unity.Editor;
 using Piranha;
 
 namespace PirahnaEditor
@@ -40,18 +39,7 @@ namespace PirahnaEditor
 			serializedObject.UpdateIfRequiredOrScript ();
 
 			EditorGUILayout.PropertyField (properties.Force, Content.Force);
-
 			EditorGUILayout.PropertyField (properties.Piranhas, Content.Piranhas, true);
-
-			var dndRigidbodies = EditorGUILayoutx.DragAndDropArea<Rigidbody> ();
-			if (dndRigidbodies != null)
-			{
-				Undo.RecordObjects (targets, "Added rigidbodies");
-				foreach (var t in targets)
-				{
-					((PiranhaTarget)t).piranhas.AddRange (dndRigidbodies);
-				}
-			}
 
 			serializedObject.ApplyModifiedProperties ();
 		}

@@ -1,8 +1,7 @@
 {
     "name": "PiranhaEditor",
     "references": [
-        "Piranha",
-        "Beans.Unity.Editor"
+        "Piranha"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [
