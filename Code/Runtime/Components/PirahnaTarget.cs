@@ -104,6 +104,8 @@ namespace Pirahna
 
 		private void FixedUpdate ()
 		{
+			// If the target is a Skinned Mesh Renderer, it's vertices are being animated each frame, so we need to update our
+			// vertices array.
 			if (target.TargetType == MeshTarget.MeshTargetType.SkinnedMeshRenderer)
 			{
 				target.GetMesh (ref mesh);
@@ -114,23 +116,35 @@ namespace Pirahna
 			{
 				var pirahna = pirahnas[i];
 
+				// Don't do anything to the rigidbody if it's game object is disabled.
 				if (!pirahna.gameObject.activeInHierarchy)
 					continue;
 
+				// Get the target position in worlspace. This the position the rigidbody will be trying to reach.
 				var targetPosition = GetVerticeInWorldspace (GetTargetVertexIndex (i));
+				// Calculate the direction to move along.
 				var direction = (targetPosition - pirahna.transform.position).normalized;
 
+				// Add force towards the target position.
 				pirahna.AddForce (direction * force * Time.fixedDeltaTime, ForceMode.Impulse);
 			}
 		}
 
+		/// <summary>
+		/// Get a vertex index from a pirahna index.
+		/// </summary>
 		[MethodImpl (MethodImplOptions.AggressiveInlining)]
 		private int GetTargetVertexIndex (int pirahnaIndex)
 		{
+			// Get how far between the start and end of the array the current index is, in a 0 to 1 range.
 			var normalizedIndex = (float)pirahnaIndex / pirahnas.Length;
+			// Remap the normalized index to the length of the vertex array.
 			return (int)(normalizedIndex * vertices.Length);
 		}
 
+		/// <summary>
+		/// Converts a vertice into worldspace.
+		/// </summary>
 		[MethodImpl (MethodImplOptions.AggressiveInlining)]
 		private Vector3 GetVerticeInWorldspace (int i)
 		{
