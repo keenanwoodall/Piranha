@@ -7849,6 +7849,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 2
+  activationMode: 0
+  activationDistance: 5
   piranhas:
   - {fileID: 762015752}
   - {fileID: 1231367973}
@@ -8657,6 +8659,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 2
+  activationMode: 0
+  activationDistance: 5
   piranhas:
   - {fileID: 1769528425}
   - {fileID: 384156760}
@@ -13147,7 +13151,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661917053}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2, y: 3, z: 2.0044336}
+  m_LocalPosition: {x: 2, y: 4.93, z: 2.0044336}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -13180,6 +13184,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 2
+  activationMode: 0
+  activationDistance: 2
   piranhas:
   - {fileID: 1872656696}
   - {fileID: 1630150310}
@@ -34203,6 +34209,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 2
+  activationMode: 0
+  activationDistance: 5
   piranhas:
   - {fileID: 889590208}
   - {fileID: 1440367690}

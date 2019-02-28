@@ -82,7 +82,12 @@ namespace Piranha
 			}
 		}
 
-		public float force = 5f;
+		public enum ActivationMode { None, Distance }
+
+		public float force = 2f;
+
+		public ActivationMode activationMode = ActivationMode.None;
+		public float activationDistance = 2f;
 		public List<Rigidbody> piranhas = new List<Rigidbody> ();
 
 		private MeshTarget target;
@@ -103,6 +108,12 @@ namespace Piranha
 			vertices = mesh.vertices;
 		}
 
+		private void OnDrawGizmosSelected ()
+		{
+			if (activationMode == ActivationMode.Distance)
+				Gizmos.DrawWireSphere (transform.position, activationDistance);
+		}
+
 		private void FixedUpdate ()
 		{
 			// If the target is a Skinned Mesh Renderer, it's vertices are being animated each frame, so we need to update our
@@ -121,13 +132,19 @@ namespace Piranha
 				if (!piranha.gameObject.activeInHierarchy)
 					continue;
 
+				var piranhaPosition = piranha.transform.position;
+
 				// Get the target position in worlspace. This the position the rigidbody will be trying to reach.
 				var targetPosition = GetVerticeInWorldspace (GetTargetVertexIndex (i));
-				// Calculate the direction to move along.
-				var direction = (targetPosition - piranha.transform.position).normalized;
 
-				// Add force towards the target position.
-				piranha.AddForce (direction * force * Time.fixedDeltaTime, ForceMode.Impulse);
+				if (activationMode != ActivationMode.Distance || (targetPosition - piranhaPosition).magnitude < activationDistance)
+				{
+					// Calculate the direction to move along.
+					var direction = (targetPosition - piranhaPosition).normalized;
+
+					// Add force towards the target position.
+					piranha.AddForce (direction * force * Time.fixedDeltaTime, ForceMode.Impulse);
+				}
 			}
 		}
 
