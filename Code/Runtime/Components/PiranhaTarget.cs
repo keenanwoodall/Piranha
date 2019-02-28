@@ -83,7 +83,7 @@ namespace Piranha
 		}
 
 		public float force = 5f;
-		public List<Rigidbody> rigidbodies = new List<Rigidbody> ();
+		public List<Rigidbody> piranhas = new List<Rigidbody> ();
 
 		private MeshTarget target;
 		private Mesh mesh;
@@ -113,9 +113,9 @@ namespace Piranha
 				vertices = mesh.vertices;
 			}
 
-			for (var i = 0; i < rigidbodies.Count; i++)
+			for (var i = 0; i < piranhas.Count; i++)
 			{
-				var piranha = rigidbodies[i];
+				var piranha = piranhas[i];
 
 				// Don't do anything to the rigidbody if it's game object is disabled.
 				if (!piranha.gameObject.activeInHierarchy)
@@ -132,13 +132,13 @@ namespace Piranha
 		}
 
 		/// <summary>
-		/// Get a vertex index from a rigidbody index.
+		/// Get a vertex index from a piranha index.
 		/// </summary>
 		[MethodImpl (MethodImplOptions.AggressiveInlining)]
-		private int GetTargetVertexIndex (int rigidbodyIndex)
+		private int GetTargetVertexIndex (int piranhaIndex)
 		{
 			// Get how far between the start and end of the array the current index is, in a 0 to 1 range.
-			var normalizedIndex = (float)rigidbodyIndex / rigidbodies.Count;
+			var normalizedIndex = (float)piranhaIndex / piranhas.Count;
 			// Remap the normalized index to the length of the vertex array.
 			return (int)(normalizedIndex * vertices.Length);
 		}

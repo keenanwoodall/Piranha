@@ -11,19 +11,19 @@ namespace PirahnaEditor
 	{
 		private class Content
 		{
-			public static readonly GUIContent Rigidbodies = new GUIContent ("Rigidbodies");
+			public static readonly GUIContent Piranhas = new GUIContent ("Piranhas");
 			public static readonly GUIContent Force = new GUIContent (text: "Force", tooltip: "Magnitude of the force (impulse) to apply to each rigidbody.");
 		}
 
 		private class Properties
 		{
 			public SerializedProperty Force;
-			public SerializedProperty Rigidbodies;
+			public SerializedProperty Piranhas;
 
 			public Properties (SerializedObject obj)
 			{
 				Force = obj.FindProperty ("force");
-				Rigidbodies = obj.FindProperty ("rigidbodies");
+				Piranhas = obj.FindProperty ("piranhas");
 			}
 		}
 
@@ -41,7 +41,7 @@ namespace PirahnaEditor
 
 			EditorGUILayout.PropertyField (properties.Force, Content.Force);
 
-			EditorGUILayout.PropertyField (properties.Rigidbodies, Content.Rigidbodies, true);
+			EditorGUILayout.PropertyField (properties.Piranhas, Content.Piranhas, true);
 
 			var dndRigidbodies = EditorGUILayoutx.DragAndDropArea<Rigidbody> ();
 			if (dndRigidbodies != null)
@@ -49,7 +49,7 @@ namespace PirahnaEditor
 				Undo.RecordObjects (targets, "Added rigidbodies");
 				foreach (var t in targets)
 				{
-					((PiranhaTarget)t).rigidbodies.AddRange (dndRigidbodies);
+					((PiranhaTarget)t).piranhas.AddRange (dndRigidbodies);
 				}
 			}
 
