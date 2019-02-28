@@ -10,8 +10,8 @@ namespace PirahnaEditor
 	{
 		private class Content
 		{
-			public static readonly GUIContent Piranhas = new GUIContent ("Piranhas");
 			public static readonly GUIContent Force = new GUIContent (text: "Force", tooltip: "Magnitude of the force (impulse) to apply to each rigidbody.");
+			public static readonly GUIContent Piranhas = new GUIContent ("Piranhas", tooltip: "The rigidbodies to make swarm the target.");
 		}
 
 		private class Properties

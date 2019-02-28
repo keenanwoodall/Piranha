@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 6052736132222485189}
   - component: {fileID: 9074383961479487751}
   - component: {fileID: 3257930137919491195}
-  m_Layer: 0
-  m_Name: Pirahna
+  m_Layer: 2
+  m_Name: Piranha
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
