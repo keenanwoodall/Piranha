@@ -12,8 +12,7 @@ Works on Mesh Filters and Skinned Mesh Renderers.
 
 ## Options
 
-Increase `Force` to change how attracted the rigidbodies are to the target.
+- Increase `Force` to change how attracted the rigidbodies are to the target.
 ![2](https://i.imgur.com/xOgaggq.gif)
-
-Change the `Attraction Mode` to `Distance` to prevent rigidbodies from swarming the target unless they are within the `Attraction Distance`.
+- Change the `Attraction Mode` to `Distance` to prevent rigidbodies from swarming the target unless they are within the `Attraction Distance`.
 ![3](https://i.imgur.com/Ow8BHMi.gif)
