@@ -1,5 +1,4 @@
 ﻿using System.Runtime.CompilerServices;
-using Unity.Collections;
 using UnityEngine;
 
 namespace Pirahna
@@ -125,12 +124,14 @@ namespace Pirahna
 			}
 		}
 
+		[MethodImpl (MethodImplOptions.AggressiveInlining)]
 		private int GetTargetVertexIndex (int pirahnaIndex)
 		{
 			var normalizedIndex = (float)pirahnaIndex / pirahnas.Length;
 			return (int)(normalizedIndex * vertices.Length);
 		}
 
+		[MethodImpl (MethodImplOptions.AggressiveInlining)]
 		private Vector3 GetVerticeInWorldspace (int i)
 		{
 			return transform.localToWorldMatrix.MultiplyPoint3x4 (vertices[i]);
