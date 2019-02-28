@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Pirahna
 {
-	public class PirahnaTarget : MonoBehaviour
+	public class PiranhaTarget : MonoBehaviour
 	{
 		/// <summary>
 		/// Abstracts access to a mesh.
